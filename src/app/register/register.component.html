@@ -1,0 +1,55 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 text-center">
+            <h1>{{ title }}</h1>
+        </div>
+    </div>
+    <div class="row align-content-justify">
+        <form id="register-form" [formGroup]="register" (ngSubmit)="onSubmit()" novalidate>
+            <div class=" col-md-6 col-12 form-group ">
+                <label class="center-block">Name:
+                    <input class="form-control" formControlName="name">
+                </label>
+            </div>
+            <div class=" col-md-6 col-12 form-group ">
+                <label class="center-block">Email:
+                    <input class="form-control" formControlName="email">
+                </label>
+            </div>
+            <div class=" col-md-6 col-12 form-group ">
+                <label class="center-block">Phone:
+                    <input class="form-control" formControlName="phone">
+                </label>
+            </div>
+            <div class=" col-md-6 col-12 form-group ">
+                <label class="center-block">Password:
+                    <input class="form-control" formControlName="password">
+                </label>
+            </div>
+            <div class="col-md-6 col-12 form-group">
+                <button type="submit" [disabled]="!register.valid" class="btn btn-success">Save</button>
+            </div>
+
+        </form>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            Form Vaild = {{ register.valid }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 text-center">
+            <h2> Form Value  </h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <pre>
+                <p *ngIf="register.get('name').value">Name : {{ register.get('name').value }}</p>
+                <p *ngIf="register.get('email').value">Email : {{ register.get('email').value }}</p>
+                <p *ngIf="register.get('phone').value"> Phone : {{ register.get('phone').value }}</p>
+                <p *ngIf="register.get('password').value">Password : {{ register.get('password').value }}</p>
+            </pre>
+        </div>
+    </div>
+</div>

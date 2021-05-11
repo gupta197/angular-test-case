@@ -1,16 +1,32 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { RouterModule, Routes } from '@angular/router';
+import { RegisterComponent } from './register/register.component';
+import { APP_BASE_HREF } from '@angular/common';
+import { HomeComponent } from './home/home.component';
 
 describe('AppComponent', () => {
+  const routes: Routes = [
+    { path: '', component: HomeComponent },
+    { path: 'home', component: HomeComponent },
+    { path: 'signup', component: RegisterComponent },
+    { path: '', redirectTo: '/', pathMatch: 'full'}
+  ]
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        RouterModule.forRoot(routes)
       ],
       declarations: [
-        AppComponent
+        AppComponent,
+        HomeComponent,
+        RegisterComponent
       ],
+      providers: [
+        { provide: APP_BASE_HREF, useValue: '/' }
+      ]
     }).compileComponents();
   }));
 
@@ -30,6 +46,6 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('angular-unit-testing app is running!');
+    expect(compiled.querySelector('.block').textContent).toContain('Some Footer Link here..');
   });
 });
